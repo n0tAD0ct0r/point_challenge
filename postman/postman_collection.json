@@ -1,353 +1,315 @@
 {
-	"info": {
-		"_postman_id": "fbd317dc-6dea-4320-8d2c-c3bfa666a233",
-		"name": "MVP Twitter",
-		"description": "Coding challenge for Point.app",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "Signup",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"let value = JSON.parse(responseBody)",
-							"pm.collectionVariables.set(\"Token\", value.token);"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"username\": \"bodys@email.com\",\n    \"password\": \"password\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:4000/signup",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "4000",
-					"path": [
-						"signup"
-					]
-				},
-				"description": "Allows a user to signup for an account"
-			},
-			"response": []
-		},
-		{
-			"name": "Login",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"let value = JSON.parse(responseBody)",
-							"pm.collectionVariables.set(\"Token\", value.token);"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"username\": \"someaddress@email.com\",\n    \"password\": \"password\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:4000/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "4000",
-					"path": [
-						"login"
-					]
-				},
-				"description": "Allows a user to login to their account"
-			},
-			"response": []
-		},
-		{
-			"name": "Get Tweets",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query {\n  getTweets {\n    author\n    message\n    createdAt\n    updatedAt\n    id\n  }\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "http://localhost:4000/graphql",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "4000",
-					"path": [
-						"graphql"
-					]
-				},
-				"description": "Gets all tweets for a user"
-			},
-			"response": []
-		},
-		{
-			"name": "Get Tweet",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query {\n  getTweet(id: \"tweet id\") {\n    author\n    message\n    createdAt\n    updatedAt\n    id\n  }\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "http://localhost:4000/graphql",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "4000",
-					"path": [
-						"graphql"
-					]
-				},
-				"description": "Gets a user's tweet by ID"
-			},
-			"response": []
-		},
-		{
-			"name": "Create Tweet",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation {\n  createTweet(message: \"test tweet\") {\n    author\n    message\n    createdAt\n    updatedAt\n    id\n  }\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "http://localhost:4000/graphql",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "4000",
-					"path": [
-						"graphql"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Edit Tweet",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation {\n  editTweet(id: \"tweet id\", message: \"edit tweet message\") {\n    author\n    message\n    createdAt\n    updatedAt\n    id\n  }\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "http://localhost:4000/graphql",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "4000",
-					"path": [
-						"graphql"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete Tweet Copy",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation {\n  deleteTweet(id: \"id of tweet to delete\") {\n    id\n  }\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "http://localhost:4000/graphql",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "4000",
-					"path": [
-						"graphql"
-					]
-				}
-			},
-			"response": []
-		}
-	],
-	"auth": {
-		"type": "bearer",
-		"bearer": [
-			{
-				"key": "token",
-				"value": "{{Token}}",
-				"type": "string"
-			}
-		]
-	},
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		}
-	],
-	"variable": [
-		{
-			"key": "Token",
-			"value": ""
-		},
-		{
-			"key": "Last_Tweet_ID",
-			"value": ""
-		}
-	]
+  "info": {
+    "_postman_id": "fbd317dc-6dea-4320-8d2c-c3bfa666a233",
+    "name": "MVP Twitter",
+    "description": "Coding challenge for Point.app",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Signup",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let value = JSON.parse(responseBody)",
+              "pm.collectionVariables.set(\"Token\", value.token);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"bodys@email.com\",\n    \"password\": \"password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/signup",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["signup"]
+        },
+        "description": "Allows a user to signup for an account"
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let value = JSON.parse(responseBody)",
+              "pm.collectionVariables.set(\"Token\", value.token);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"bodys@email.com\",\n    \"password\": \"password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["login"]
+        },
+        "description": "Allows a user to login to their account"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Tweets",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{Token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query {\n  getTweets {\n    author\n    message\n    createdAt\n    updatedAt\n    id\n  }\n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["graphql"]
+        },
+        "description": "Gets all tweets for a user"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Tweet",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{Token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query {\n  getTweet(id: \"tweet id\") {\n    author\n    message\n    createdAt\n    updatedAt\n    id\n  }\n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["graphql"]
+        },
+        "description": "Gets a user's tweet by ID"
+      },
+      "response": []
+    },
+    {
+      "name": "Create Tweet",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{Token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "mutation {\n  createTweet(message: \"test tweet\") {\n    author\n    message\n    createdAt\n    updatedAt\n    id\n  }\n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["graphql"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Edit Tweet",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{Token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "mutation {\n  editTweet(id: \"tweet id\", message: \"edit tweet message\") {\n    author\n    message\n    createdAt\n    updatedAt\n    id\n  }\n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["graphql"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Tweet Copy",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{Token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "mutation {\n  deleteTweet(id: \"id of tweet to delete\") {\n    id\n  }\n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/graphql",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["graphql"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{Token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "Token",
+      "value": ""
+    },
+    {
+      "key": "Last_Tweet_ID",
+      "value": ""
+    }
+  ]
 }

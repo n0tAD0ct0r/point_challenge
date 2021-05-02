@@ -1,14 +1,13 @@
-const { gql } = require('apollo-server-express');
-
+const { gql } = require("apollo-server-express");
 
 module.exports = gql`
   type Tweet {
-      id: String
-      author: String
-      message: String
-      createdAt: String
-      updatedAt: String
-    }
+    id: String
+    author: String
+    message: String
+    createdAt: String
+    updatedAt: String
+  }
 
   type Query {
     getTweet(id: String): Tweet

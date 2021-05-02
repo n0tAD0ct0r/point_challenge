@@ -1,6 +1,10 @@
-version: '3.7'
+version: "3.7"
 services:
-  mongodb_container:
+  api:
+    build: .
+    ports:
+      - 4000:4000
+  mongodb:
     image: mongo:latest
     ports:
       - 27017:27017

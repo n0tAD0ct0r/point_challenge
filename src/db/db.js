@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
-const { MONGO_URL } = require("../config")
+const mongoose = require("mongoose");
+const { MONGO_URL } = require("../config");
 
 mongoose.connect(MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 mongoose.set("useCreateIndex", true);
-mongoose.connection.on('error', error => console.log(error));
+mongoose.connection.on("error", (error) => console.log(error));
