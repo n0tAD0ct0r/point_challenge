@@ -18,7 +18,7 @@ docker-compose up
 
 ## Docs
 
-Docs are a [Postman](https://www.postman.com/) collection and located in `/postman`.
+Docs are a [Postman](https://www.postman.com/) collection and located in [`/postman`](https://github.com/n0tAD0ct0r/point_challenge/tree/main/postman).
 
 The API consists of 
 
