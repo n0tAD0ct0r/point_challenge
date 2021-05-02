@@ -1,6 +1,7 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const passport = require('passport');
+const { PORT } = require("./config")
 
 require('./auth/auth');
 require('./db/db');
@@ -27,6 +28,6 @@ app.use("/graphql", passport.authenticate('jwt', { session: false }))
 
 server.applyMiddleware({ app });
 
-app.listen({ port: 4000 }, () => {
-  console.log(`server running on port: 4000`)
+app.listen(PORT, () => {
+  console.log(`server running on port: ${PORT}`)
 });

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
+const { MONGO_URL } = require("../config")
 
-
-mongoose.connect("mongodb://127.0.0.1:27017/passport-jwt", {
+mongoose.connect(MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
