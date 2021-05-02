@@ -1,0 +1,22 @@
+{
+  "scripts": {
+    "lint": "prettier",
+    "lint:fix": "prettier --write",
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.24.0",
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.1",
+    "graphql": "^15.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.15",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "prettier": "2.2.1"
+  }
+}
