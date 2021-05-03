@@ -13,7 +13,7 @@ docker-compose up
 
 ##### Stop
 ```bash
-docker-compose up
+docker-compose down
 ```
 
 ## Docs
